@@ -19,6 +19,10 @@ header, main, footer, .links {
     margin-top: 60px;
 }
 
+header img {
+    width: 800px;
+}
+
 figcaption {
     font-size: 0.9em;
     font-weight: 300;
@@ -26,6 +30,10 @@ figcaption {
     p {
         margin: 0;
     }
+}
+
+main.container {
+    margin-bottom: 100px;
 }
 
 %clearfix {
@@ -93,6 +101,12 @@ footer {
     float: right;
 }
 
+.fixed-bottom {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
 @media screen and (max-width: 768px) {
     .btn--default {
         display: block;
@@ -106,5 +120,9 @@ footer {
 
     footer {
         padding-top: 10px;
+    }
+
+    main.container {
+        margin-bottom: 120px;
     }
 }
