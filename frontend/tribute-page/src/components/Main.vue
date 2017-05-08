@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="container">
         <p>
             Sony's PlayStation consoles are a vital part of console gaming. They are
             some of the most successful video game consoles ever released. Ever since the
@@ -19,6 +19,10 @@
                 </li>
             </ul>
         </section>
+        <div class="links center-text">
+            <a class="btn btn--default" href="https://en.wikipedia.org/wiki/PlayStation_(console)" target="_blank">Read more on Wikipedia</a>
+            <a class="btn btn--default" href="https://www.playstation.com/" target="_blank">Official PlayStation website</a>
+        </div>
     </main>
 </template>
 

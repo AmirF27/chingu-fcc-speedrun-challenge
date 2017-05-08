@@ -22,7 +22,7 @@ module.exports = {
             'scss': 'vue-style-loader!css-loader!sass-loader',
             'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
             css: ExtractTextPlugin.extract({
-                use: "css-loader",
+                use: ["css-loader", "sass-loader"],
                 fallback: "vue-style-loader"
             })
           }

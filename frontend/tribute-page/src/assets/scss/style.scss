@@ -1,0 +1,82 @@
+@import "variables";
+
+body {
+    font-family: $default-font;
+    font-size: 16px;
+    margin: 0;
+}
+
+%clearfix {
+    &:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+.container {
+    margin: 60px auto 0;
+    width: 80%;
+
+    @extend %clearfix;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.responsive-img {
+    max-width: 100%;
+}
+
+.links {
+    margin-top: 60px;
+}
+
+.btn {
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.2s linear;
+}
+
+.btn--default {
+    background: $btn-default-background;
+    color: $color-text;
+
+    &:hover {
+        background: lighten($btn-default-background, 10%);
+    }
+}
+
+footer {
+    background: $color-primary;
+    color: $color-text;
+
+    a {
+        border-bottom: 1px dotted $color-text;
+        color: $color-text;
+        text-decoration: none;
+        transition: all 0.2s linear;
+
+        &:hover {
+            border-color: $color-link;
+            color: $color-link;
+        }
+    }
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+@media screen and (max-width: 768px) {
+    .btn--default {
+        display: block;
+    }
+}
