@@ -1,9 +1,31 @@
 @import "variables";
 
 body {
+    background: $color-secondary;
     font-family: $default-font;
     font-size: 16px;
     margin: 0;
+}
+
+h1, h2 {
+    font-weight: 400;
+}
+
+p {
+    line-height: 1.5;
+}
+
+header, main, footer, .links {
+    margin-top: 60px;
+}
+
+figcaption {
+    font-size: 0.9em;
+    font-weight: 300;
+
+    p {
+        margin: 0;
+    }
 }
 
 %clearfix {
@@ -15,7 +37,7 @@ body {
 }
 
 .container {
-    margin: 60px auto 0;
+    margin: 0 auto;
     width: 80%;
 
     @extend %clearfix;
@@ -27,10 +49,6 @@ body {
 
 .responsive-img {
     max-width: 100%;
-}
-
-.links {
-    margin-top: 60px;
 }
 
 .btn {
@@ -78,5 +96,15 @@ footer {
 @media screen and (max-width: 768px) {
     .btn--default {
         display: block;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .left, .right {
+        float: none;
+    }
+
+    footer {
+        padding-top: 10px;
     }
 }

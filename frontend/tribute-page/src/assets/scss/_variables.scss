@@ -1,7 +1,8 @@
 $default-font: "Open Sans", sans-serif;
 
 $color-primary: #042a2b;
-$color-text: #fcfcfc;
+$color-secondary: #fcfcfc;
+$color-text: $color-secondary;
 $color-link: #5eb1bf;
 
 $btn-default-background: $color-primary;

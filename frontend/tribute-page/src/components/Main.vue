@@ -20,7 +20,7 @@
             </ul>
         </section>
         <div class="links center-text">
-            <a class="btn btn--default" href="https://en.wikipedia.org/wiki/PlayStation_(console)" target="_blank">Read more on Wikipedia</a>
+            <a class="btn btn--default" href="https://en.wikipedia.org/wiki/PlayStation_(console)" target="_blank">Further info on Wikipedia</a>
             <a class="btn btn--default" href="https://www.playstation.com/" target="_blank">Official PlayStation website</a>
         </div>
     </main>
