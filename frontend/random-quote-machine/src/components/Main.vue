@@ -1,8 +1,8 @@
 <template>
-    <main>
+    <main class="container">
         <div class="box">
-            <blockquote>{{ quote.text }}</blockquote>
-            <span class="author">&ndash; {{ quote.author }}</span>
+            <blockquote class="quote">{{ quote.text }}</blockquote>
+            <span class="author right">&ndash; {{ quote.author }}</span>
         </div>
     </main>
 </template>
@@ -22,7 +22,10 @@ export default {
     methods: {
         showQuote() {
             Quote.getQuote(this, function(quote) {
-                ({ text: this.quote.text, author: this.quote.author } = quote);
+                ({
+                    text: this.quote.text,
+                    author: this.quote.author
+                } = quote);
             });
         }
     },

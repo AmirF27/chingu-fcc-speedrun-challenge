@@ -1,0 +1,18 @@
+@import "speedrun-styles.scss";
+
+.box {
+    background: $color-primary-light;
+    border-radius: 3px;
+    margin: 60px auto 0;
+    max-width: 100%;
+    min-height: 100px;
+    padding: 20px;
+    position: relative;
+    width: 600px;
+
+    @extend %clearfix;
+}
+
+.author {
+    font-style: italic;
+}

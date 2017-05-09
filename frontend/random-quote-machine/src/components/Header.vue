@@ -1,6 +1,8 @@
 <template>
     <header>
-        <h1>{{ projectTitle }}</h1>
+        <div class="container">
+            <h1 class="center-text title">{{ projectTitle }}</h1>
+        </div>
     </header>
 </template>
 

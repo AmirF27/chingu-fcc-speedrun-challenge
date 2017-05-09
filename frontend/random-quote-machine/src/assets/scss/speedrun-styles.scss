@@ -1,0 +1,114 @@
+@import "variables";
+
+body {
+    background: lighten($color-primary-light, 70%);
+    color: $color-text-primary;
+    font-family: $default-font;
+    font-size: 16px;
+    margin: 0;
+}
+
+h1, h2 {
+    font-weight: 400;
+}
+
+p {
+    line-height: 1.5;
+}
+
+main.container {
+    margin-bottom: 100px;
+}
+
+%clearfix {
+    &:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+
+    @extend %clearfix;
+}
+
+.title {
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 15px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.responsive-img {
+    max-width: 100%;
+}
+
+.btn {
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+    text-decoration: none;
+    transition: all 0.2s linear;
+}
+
+.btn--default {
+    background: $btn-default-background;
+    color: $white;
+
+    &:hover {
+        background: lighten($btn-default-background, 10%);
+    }
+}
+
+footer a {
+    border-bottom: 1px dotted $white;
+    color: $white;
+    text-decoration: none;
+    transition: all 0.2s linear;
+
+    &:hover {
+        border-color: $color-primary-light;
+        color: $color-primary-light;
+    }
+}
+
+header, footer {
+    background: $color-primary-dark;
+    color: $white;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.fixed-bottom {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+@media screen and (max-width: 580px) {
+    footer {
+        .left, .right {
+            float: none;
+        }
+    }
+
+    footer {
+        padding-top: 10px;
+    }
+
+    main.container {
+        margin-bottom: 120px;
+    }
+}
