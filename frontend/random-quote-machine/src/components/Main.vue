@@ -21,10 +21,9 @@ export default {
     },
     methods: {
         showQuote() {
-            ({
-                text: this.quote.text,
-                author: this.quote.author
-            } = Quote.getQuote());
+            Quote.getQuote(this, function(quote) {
+                ({ text: this.quote.text, author: this.quote.author } = quote);
+            });
         }
     },
     created() {
