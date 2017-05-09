@@ -33,17 +33,25 @@
 }
 
 .btn--new-quote {
+    font-size: 0.9em;
     right: $box-padding;
     text-transform: uppercase;
 }
 
 .btn--tweet {
+    font-size: 1.4em;
     left: $box-padding;
+    padding-left: 0;
+    padding-right: 0;
+    width: 40px;
 }
 
 .btn--new-quote, .btn--tweet {
     bottom: $box-padding;
-    font-size: 0.9em;
+    height: 40px;
+    line-height: 40px;
+    padding-bottom: 0;
+    padding-top: 0;
     margin: 0;
     position: absolute;
 }

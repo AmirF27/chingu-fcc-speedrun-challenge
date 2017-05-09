@@ -73,12 +73,13 @@ main.container {
 footer a {
     border-bottom: 1px dotted $white;
     color: $white;
+    max-height: 100px;
     text-decoration: none;
     transition: all 0.2s linear;
 
     &:hover {
-        border-color: $color-primary-light;
-        color: $color-primary-light;
+        border-color: $color-accent;
+        color: $color-accent;
     }
 }
 

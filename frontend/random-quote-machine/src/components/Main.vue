@@ -7,9 +7,9 @@
             <button v-on:click="showQuote" class="btn btn--default btn--new-quote">
                 New quote
             </button>
-            <button class="btn btn--default btn--tweet">
+            <a v-bind:href="tweetUrl" class="btn btn--default btn--tweet center-text" target="_blank">
                 <i class="fa fa-twitter" aria-hidden="true"></i>
-            </button>
+            </a>
         </div>
     </main>
 </template>
@@ -34,6 +34,12 @@ export default {
                     author: this.quote.author
                 } = quote);
             });
+        }
+    },
+    computed: {
+        tweetUrl() {
+            let tweetText = encodeURIComponent(`${this.quote.text} - ${this.quote.author}`);
+            return `https://twitter.com/intent/tweet?text=${tweetText}`;
         }
     },
     created() {
