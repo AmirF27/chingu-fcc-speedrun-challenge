@@ -1,4 +1,7 @@
-$default-font: "Open Sans", sans-serif;
+/*
+ * Speedrun-specific variables
+**/
+$default-font: "Lato", sans-serif;
 
 $color-primary: #2196f3;
 $color-primary-dark: #1976d2;
@@ -11,3 +14,9 @@ $color-link: #5eb1bf;
 $white: #fff;
 
 $btn-default-background: $color-primary;
+
+/*
+ * Project-specific variables
+**/
+
+$box-padding: 30px;

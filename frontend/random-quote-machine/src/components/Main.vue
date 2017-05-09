@@ -1,8 +1,15 @@
 <template>
     <main class="container">
         <div class="box">
+            <i class="fa fa-quote-left quote-icon" aria-hidden="true"></i>
             <blockquote class="quote">{{ quote.text }}</blockquote>
             <span class="author right">&ndash; {{ quote.author }}</span>
+            <button v-on:click="showQuote" class="btn btn--default btn--new-quote">
+                New quote
+            </button>
+            <button class="btn btn--default btn--tweet">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </button>
         </div>
     </main>
 </template>

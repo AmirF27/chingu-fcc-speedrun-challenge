@@ -50,9 +50,13 @@ main.container {
 }
 
 .btn {
+    border: none;
     border-radius: 3px;
+    cursor: pointer;
+    font-size: 1em;
     margin: 10px;
-    padding: 10px;
+    outline: none;
+    padding: 12px;
     text-decoration: none;
     transition: all 0.2s linear;
 }
@@ -62,7 +66,7 @@ main.container {
     color: $white;
 
     &:hover {
-        background: lighten($btn-default-background, 10%);
+        background: lighten($btn-default-background, 8%);
     }
 }
 
