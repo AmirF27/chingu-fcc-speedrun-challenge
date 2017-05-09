@@ -1,4 +1,5 @@
 @import "speedrun-styles.scss";
+@import "variables";
 
 .box {
     background: $color-primary-light;
@@ -54,4 +55,20 @@
     padding-top: 0;
     margin: 0;
     position: absolute;
+}
+
+@media screen and (max-width: 480px) {
+    .quote {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .author {
+        margin-right: 0;
+    }
+
+    .quote-icon {
+        display: block;
+        position: static;
+    }
 }

@@ -1,4 +1,4 @@
-@import "variables";
+@import "speedrun-variables";
 
 body {
     background: lighten($color-primary-light, 70%);
@@ -62,11 +62,11 @@ main.container {
 }
 
 .btn--default {
-    background: $btn-default-background;
+    background: $color-primary;
     color: $white;
 
     &:hover {
-        background: lighten($btn-default-background, 8%);
+        background: lighten($color-primary, 8%);
     }
 }
 
@@ -114,6 +114,6 @@ header, footer {
     }
 
     main.container {
-        margin-bottom: 120px;
+        margin-bottom: 160px;
     }
 }
