@@ -11,7 +11,8 @@ class Location {
 export default class Geo {
     static getLocation() {
         return new Promise(function(resolve, reject) {
-            Ajax.get("http://ip-api.com/json").then(
+            let url = "http://ip-api.com/json";
+            Ajax.get(url).then(
                 function fulfilled(response) {
                     response = JSON.parse(response);
                     resolve(new Location(

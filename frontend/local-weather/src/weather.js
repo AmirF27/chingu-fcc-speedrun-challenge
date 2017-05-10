@@ -36,7 +36,7 @@ export default class Weather {
     }
 
     static getWeather(city) {
-        let url = `http://api.openweathermap.org/data/2.5/weather`,
+        let url = "http://api.openweathermap.org/data/2.5/weather",
             params = {
                 q: city,
                 APPID: "f2a9481460ad15f02543e1511c514374"

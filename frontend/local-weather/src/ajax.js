@@ -1,24 +1,24 @@
-function resolveUrl(url, params) {
-    let paramsKeys = Object.keys(params);
-    // check if params were provided
-    if (paramsKeys.length > 0) {
-        url += "?";
-        // attach params to the url
-        for (let param of paramsKeys) {
-            url += `${param}=${params[param]}`;
-            // add a "&" as long as it's not the last param
-            if (param !== paramsKeys[paramsKeys.length - 1]) {
-                url += "&";
+export default class Ajax {
+    static resolveUrl(url, params) {
+        let paramsKeys = Object.keys(params);
+        // check if params were provided
+        if (paramsKeys.length > 0) {
+            url += "?";
+            // attach params to the url
+            for (let param of paramsKeys) {
+                url += `${param}=${params[param]}`;
+                // add a "&" as long as it's not the last param
+                if (param !== paramsKeys[paramsKeys.length - 1]) {
+                    url += "&";
+                }
             }
         }
+
+        return url;
     }
 
-    return url;
-}
-
-export default class Ajax {
     static get(url, params = {}) {
-        url = resolveUrl(url, params);
+        url = this.resolveUrl(url, params);
 
         return new Promise(function(resolve, reject) {
             let xhr = new XMLHttpRequest();
