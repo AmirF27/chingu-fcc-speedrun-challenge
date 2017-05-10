@@ -32,21 +32,32 @@ export default {
     },
     methods: {
         getLocationAndWeather() {
-            Geo.getLocation(function(location) {
+            let data = {
+                location: this.location,
+                weather: this.weather
+            };
+
+            Geo.getLocation()
+            .then(function fulfilled(location) {
                 ({
-                    city: this.location.city,
-                    region: this.location.region,
-                    country: this.location.country
+                    city: data.location.city,
+                    region: data.location.region,
+                    country: data.location.country
                 } = location);
 
-                Weather.getWeather(location.city, function(weather) {
-                    ({
-                        temp: this.weather.temp,
-                        description: this.weather.description,
-                        iconUrl: this.weather.iconUrl,
-                    } = weather);
-                }.bind(this));
-            }.bind(this));
+                return Weather.getWeather(location.city);
+            }, function rejected(reason) {
+                console.error(reason);
+            })
+            .then(function fulfilled(weather) {
+                ({
+                    temp: data.weather.temp,
+                    description: data.weather.description,
+                    iconUrl: data.weather.iconUrl,
+                } = weather);
+            }, function rejected(reason) {
+                console.error(reason);
+            });
         }
     },
     created() {
