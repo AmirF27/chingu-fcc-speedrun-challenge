@@ -68,7 +68,7 @@ Copy this table as needed to make a separate table for each team member for reco
 |      | N/A| [Comprehensive Portfolio as a Single Page App](./portfolio) |   |
 | 5/08/2017 |  [Medium Post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-tribute-page-8b7bb2ba4731)  | [Build a Tribute Page](./frontend/tribute-page) |  |
 |      |  [ ]()  | [Build a Personal Portfolio Webpage](./frontend/portfolio) |  |
-|      |  [ ]()  | [Build a Random Quote Machine](./frontend/random-quote-machine) |  |
+| 5/10/2017 |  [Medium Post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-random-quote-machine-8d331590a9ce)  | [Build a Random Quote Machine](./frontend/random-quote-machine) |  |
 |      |  [ ]()  | [Show the Local Weather](./frontend/local-weather) |  |
 |      |  [ ]()  | [Build a Wikipedia Viewer](./frontend/wikipedia-viewer) |  |
 |      |  [ ]()  | [Use the Twitch.tv JSON API](./frontend/twitch-client) |  |
