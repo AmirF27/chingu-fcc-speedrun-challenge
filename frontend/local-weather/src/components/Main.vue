@@ -3,13 +3,13 @@
         <h3>
             {{ location.city}}, {{ location.region }}, {{ location.country }}
         </h3>
-        <p>
+        <p class="temp">
             {{ weather.temp.temp }}&deg;{{ weather.temp.scale }}
         </p>
-        <img v-bind:src="weather.iconUrl" v-bind:alt="weather.description">
-        <p>{{ weather.description }}</p>
+        <img class="icon" v-bind:src="weather.iconUrl" v-bind:alt="weather.description">
+        <p class="desc">{{ weather.description }}</p>
         <button v-on:click="toggleTempScale" class="btn btn--default">
-            Toggle temperature scale
+            Toggle Temperature Scale
         </button>
     </main>
 </template>
@@ -65,7 +65,7 @@ export default {
             });
         },
         toggleTempScale() {
-            this.weather.temp.toggleTempScale();
+            this.weather.temp.toggleScale();
         }
     },
     created() {

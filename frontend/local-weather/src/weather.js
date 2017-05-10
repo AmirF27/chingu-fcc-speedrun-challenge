@@ -5,19 +5,26 @@ const F = "F";
 
 class Temp {
     constructor(temp, scale = C) {
-        this.temp = temp;
+        this.temp = Math.round(temp);
         this.scale = scale;
     }
 
-    toggleTempScale() {
-        if (this.scale == C) {
-            this.temp = Math.round(this.temp * 9/5 + 32);
-            this.scale = F;
-        }
-        else {
+    toC() {
+        if (this.scale != C) {
             this.temp = Math.round((this.temp - 32) * 5/9);
             this.scale = C;
         }
+    }
+
+    toF() {
+        if (this.scale != F) {
+            this.temp = Math.round(this.temp * 9/5 + 32);
+            this.scale = F;
+        }
+    }
+
+    toggleScale() {
+        this.scale == C ? this.toF() : this.toC();
     }
 }
 
@@ -39,9 +46,8 @@ export default class Weather {
             Ajax.get(url, params).then(
                 function fulfilled(response) {
                     response = JSON.parse(response);
-                    let temp = new Temp(Math.round(response.main.temp - 273.15));
                     resolve(new Weather(
-                        temp,
+                        new Temp(response.main.temp - 273.15),
                         response.weather[0].description,
                         response.weather[0].icon
                     ));
