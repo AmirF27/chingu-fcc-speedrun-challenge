@@ -1,13 +1,16 @@
 <template>
     <main class="container center-text">
-        <p class="location">
+        <h3>
             {{ location.city}}, {{ location.region }}, {{ location.country }}
+        </h3>
+        <p>
+            {{ weather.temp.temp }}&deg;{{ weather.temp.scale }}
         </p>
-        <p class="weather">
-            <img v-bind:src="weather.iconUrl" v-bind:alt="weather.description">
-            <p>{{ weather.temp }}&deg;C</p>
-            <p>{{ weather.description }}</p>
-        </p>
+        <img v-bind:src="weather.iconUrl" v-bind:alt="weather.description">
+        <p>{{ weather.description }}</p>
+        <button v-on:click="toggleTempScale" class="btn btn--default">
+            Toggle temperature scale
+        </button>
     </main>
 </template>
 
@@ -24,7 +27,7 @@ export default {
                 country: ""
             },
             weather: {
-                temp: "",
+                temp: {},
                 description: "",
                 iconUrl: ""
             }
@@ -37,6 +40,7 @@ export default {
                 weather: this.weather
             };
 
+            // get location first
             Geo.getLocation()
             .then(function fulfilled(location) {
                 ({
@@ -45,6 +49,7 @@ export default {
                     country: data.location.country
                 } = location);
 
+                // once we have the location, get the weather
                 return Weather.getWeather(location.city);
             }, function rejected(reason) {
                 console.error(reason);
@@ -58,6 +63,9 @@ export default {
             }, function rejected(reason) {
                 console.error(reason);
             });
+        },
+        toggleTempScale() {
+            this.weather.temp.toggleTempScale();
         }
     },
     created() {

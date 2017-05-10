@@ -1,5 +1,26 @@
 import Ajax from "./ajax";
 
+const C = "C";
+const F = "F";
+
+class Temp {
+    constructor(temp, scale = C) {
+        this.temp = temp;
+        this.scale = scale;
+    }
+
+    toggleTempScale() {
+        if (this.scale == C) {
+            this.temp = Math.round(this.temp * 9/5 + 32);
+            this.scale = F;
+        }
+        else {
+            this.temp = Math.round((this.temp - 32) * 5/9);
+            this.scale = C;
+        }
+    }
+}
+
 export default class Weather {
     constructor(temp, description, icon) {
         this.temp = temp;
@@ -18,8 +39,9 @@ export default class Weather {
             Ajax.get(url, params).then(
                 function fulfilled(response) {
                     response = JSON.parse(response);
+                    let temp = new Temp(Math.round(response.main.temp - 273.15));
                     resolve(new Weather(
-                        Math.round(response.main.temp - 273.15),
+                        temp,
                         response.weather[0].description,
                         response.weather[0].icon
                     ));
