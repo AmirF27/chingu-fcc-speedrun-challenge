@@ -2,25 +2,29 @@
     <main class="container">
         <div class="center-text">
             <input @keyup.enter="search" v-model="searchTerm" class="text-field" type="text" placeholder="">
-            <button @click="search" class="btn btn--default">
+            <button @click="search" class="btn btn--primary">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </button>
             <a class="btn btn--default" href="https://en.wikipedia.org/wiki/Special:Random" target="_blank">
                 Random Article
             </a>
         </div>
-        <ul v-if="!pending && articles.length > 0">
-            <li v-for="article in articles">
-                <h2>{{ article.title }}</h2>
-                <p>{{ article.snippet }}</p>
-            </li>
-        </ul>
-        <div v-else-if="pending" class="center-text loading">
-            <img src="../assets/img/ajax-loader.gif" alt="Loading">
-        </div>
-        <p v-if="noResults" class="center-text">
-            Sorry, your search matched no results.
-        </p>
+        <transition name="fade">
+            <ul v-if="!pending && articles.length > 0" class="list">
+                <li v-for="article in articles" class="list-item list-link">
+                    <a :href="article.url" target="_blank">
+                        <h2>{{ article.title }}</h2>
+                        <p>{{ article.snippet }}</p>
+                    </a>
+                </li>
+            </ul>
+            <div v-else-if="pending" class="center-text loading">
+                <img src="../assets/img/ajax-loader.gif" alt="Loading">
+            </div>
+            <p v-if="noResults" class="center-text">
+                Sorry, your search matched no results.
+            </p>
+        </transition>
     </main>
 </template>
 

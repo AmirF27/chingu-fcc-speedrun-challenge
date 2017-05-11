@@ -3,3 +3,21 @@
 .loading {
     margin-top: 40px;
 }
+
+.list-item {
+    h2, p {
+        margin: 0;
+    }
+
+    h2 {
+        margin-bottom: 15px;
+    }
+}
+
+.fade-enter-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter {
+    opacity: 0;
+}

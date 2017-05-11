@@ -66,11 +66,11 @@ Copy this table as needed to make a separate table for each team member for reco
 | Complete | Blog Post |Project  |
 |----------|---------|----------|
 |      | N/A| [Comprehensive Portfolio as a Single Page App](./portfolio) |   |
-| 5/08/2017 |  [Medium Post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-tribute-page-8b7bb2ba4731)  | [Build a Tribute Page](./frontend/tribute-page) |  |
+| 5/08/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-tribute-page-8b7bb2ba4731)  | [Build a Tribute Page](./frontend/tribute-page) |  |
 |      |  [ ]()  | [Build a Personal Portfolio Webpage](./frontend/portfolio) |  |
-| 5/10/2017 |  [Medium Post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-random-quote-machine-8d331590a9ce)  | [Build a Random Quote Machine](./frontend/random-quote-machine) |  |
-| 5/11/2017 |  [Medium Post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-local-weather-1b15893eb401)  | [Show the Local Weather](./frontend/local-weather) |  |
-|      |  [ ]()  | [Build a Wikipedia Viewer](./frontend/wikipedia-viewer) |  |
+| 5/10/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-random-quote-machine-8d331590a9ce)  | [Build a Random Quote Machine](./frontend/random-quote-machine) |  |
+| 5/11/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-local-weather-1b15893eb401)  | [Show the Local Weather](./frontend/local-weather) |  |
+| 5/12/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-wikipedia-viewer-38fdf449de40)  | [Build a Wikipedia Viewer](./frontend/wikipedia-viewer) |  |
 |      |  [ ]()  | [Use the Twitch.tv JSON API](./frontend/twitch-client) |  |
 |      |  [ ]()  | [Build a JavaScript Calculator](./frontend/calculator) |  |
 |      |  [ ]()  | [Build a Pomodoro Clock](./frontend/pomodoro-clock) |  |

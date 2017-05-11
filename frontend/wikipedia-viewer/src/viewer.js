@@ -23,9 +23,6 @@ export default class Viewer {
             	exintro: 1,
             	explaintext: 1,
             	gsrsearch: searchTerm
-            },
-            headers = {
-                "Api-User-Agent": "Example/1.0"
             };
 
         return new Promise(function(resolve, reject) {
