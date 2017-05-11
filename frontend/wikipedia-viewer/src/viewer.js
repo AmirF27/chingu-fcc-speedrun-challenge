@@ -33,13 +33,15 @@ export default class Viewer {
                 function fulfilled(response) {
                     response = JSON.parse(response);
                     var articles = [];
-                    for (let key in response.query.pages) {
-                        let val = response.query.pages[key];
-                        articles.push(new Article(
-                            val.title,
-                            val.extract,
-                            val.fullurl
-                        ));
+                    if (response.query) {
+                        for (let key in response.query.pages) {
+                            let val = response.query.pages[key];
+                            articles.push(new Article(
+                                val.title,
+                                val.extract,
+                                val.fullurl
+                            ));
+                        }
                     }
                     resolve(articles);
                 },
