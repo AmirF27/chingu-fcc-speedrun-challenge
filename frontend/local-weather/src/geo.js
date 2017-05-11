@@ -23,8 +23,7 @@ export default class Geo {
                 },
                 function rejected(reason) {
                     reject(reason);
-                }
-            );
+                });
         });
     }
 }

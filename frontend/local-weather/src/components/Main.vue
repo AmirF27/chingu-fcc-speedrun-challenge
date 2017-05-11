@@ -1,16 +1,19 @@
 <template>
     <main class="container center-text">
-        <h3>
-            {{ location.city}}, {{ location.region }}, {{ location.country }}
-        </h3>
-        <p class="temp">
-            {{ weather.temp.temp }}&deg;{{ weather.temp.scale }}
-        </p>
-        <img class="icon" v-bind:src="weather.iconUrl" v-bind:alt="weather.description">
-        <p class="desc">{{ weather.description }}</p>
-        <button v-on:click="toggleTempScale" class="btn btn--default">
-            Toggle Temperature Scale
-        </button>
+        <template v-if="ready">
+            <h3>
+                {{ location.city}}, {{ location.region }}, {{ location.country }}
+            </h3>
+            <p class="temp">
+                {{ weather.temp.temp }}&deg;{{ weather.temp.scale }}
+            </p>
+            <img class="icon" v-bind:src="weather.iconUrl" v-bind:alt="weather.description">
+            <p class="desc">{{ weather.description }}</p>
+            <button v-on:click="toggleTempScale" class="btn btn--default">
+                Toggle Temperature Scale
+            </button>
+        </template>
+        <img v-else src="../assets/img/ajax-loader.gif" alt="Loading">
     </main>
 </template>
 
@@ -30,15 +33,14 @@ export default {
                 temp: {},
                 description: "",
                 iconUrl: ""
-            }
+            },
+            ready: false
         };
     },
     methods: {
         getLocationAndWeather() {
-            let data = {
-                location: this.location,
-                weather: this.weather
-            };
+            this.ready = false;
+            let data = this;
 
             // get location first
             Geo.getLocation()
@@ -60,6 +62,8 @@ export default {
                     description: data.weather.description,
                     iconUrl: data.weather.iconUrl,
                 } = weather);
+
+                data.ready = true;
             }, function rejected(reason) {
                 console.error(reason);
             });

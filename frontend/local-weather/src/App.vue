@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-      <app-header v-bind:projectTitle="projectTitle"></app-header>
+      <app-header :projectTitle="projectTitle"></app-header>
       <app-main></app-main>
-      <app-footer></app-footer>
+      <app-footer :cert="cert" :project="project"></app-footer>
   </div>
 </template>
 
@@ -12,6 +12,8 @@ import Main from "./components/Main.vue";
 import Footer from "./components/Footer.vue";
 
 const PROJECT_TITLE = "Local Weather";
+const CERT = "frontend";
+const PROJECT = "local-weather";
 
 export default {
   name: "app",
@@ -22,7 +24,9 @@ export default {
   },
   data() {
         return {
-            projectTitle: PROJECT_TITLE
+            projectTitle: PROJECT_TITLE,
+            cert: CERT,
+            project: PROJECT
         };
     }
 }
