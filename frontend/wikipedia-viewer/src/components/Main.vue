@@ -1,7 +1,12 @@
 <template>
     <main class="container">
         <div class="center-text">
-            <input @keyup.enter="search" v-model="searchTerm" class="text-field" type="text" placeholder="">
+            <input
+                @keyup.enter="search"
+                v-model="searchTerm"
+                class="text-field"
+                type="text" placeholder="Search Wikipedia"
+            >
             <button @click="search" class="btn btn--primary">
                 <i class="fa fa-search" aria-hidden="true"></i>
             </button>
