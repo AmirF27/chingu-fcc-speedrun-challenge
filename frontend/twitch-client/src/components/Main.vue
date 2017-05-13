@@ -1,20 +1,29 @@
 <template>
     <main class="container">
         <div class="center-text">
-            <button @click="showAll" class="btn btn--default">All</button>
+            <button @click="showAll" class="btn btn--primary">All</button>
             <button @click="showOnline" class="btn btn--default">Online</button>
             <button @click="showOffline" class="btn btn--default">Offline</button>
         </div>
         <ul v-if="ready" class="list">
             <li v-for="user in displayedUsers" class="list-item">
-                <img :src="user.logo" :alt="user.displayName">
-                {{ user.displayName }}
-                <span class="right">
-                    {{ user.online ? "Online" : "Offline" }}
-                </span>
-                <p v-if="user.online">
-                    {{ user.stream }}
-                </p>
+                <div class="user-logo center-text">
+                    <img :src="user.logo" :alt="user.displayName">
+                    <p>
+                        <i class="fa fa-circle" aria-hidden="true"
+                           :class="user.online ? 'online' : 'offline'">
+                       </i>
+                        {{ user.online ? "Online" : "Offline" }}
+                    </p>
+                </div>
+                <div class="user-info">
+                    <h3>
+                        {{ user.displayName }}
+                    </h3>
+                    <p v-if="user.online">
+                        {{ user.stream }}
+                    </p>
+                </div>
             </li>
         </ul>
         <div v-else class="center-text">

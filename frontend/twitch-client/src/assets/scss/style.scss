@@ -1,1 +1,32 @@
 @import "speedrun-styles";
+
+.user-logo, .user-info {
+    display: inline-block;
+    margin: 2%;
+}
+
+.user-logo {
+    width: 18%;
+
+    img {
+        width: 100%;
+    }
+}
+
+.user-info {
+    vertical-align: top;
+    width: 73%;
+}
+
+.online {
+    color: #45d308;
+}
+
+.offline {
+    color: #d21f07;
+}
+
+.list {
+    margin: 0 auto;
+    width: 600px;
+}
