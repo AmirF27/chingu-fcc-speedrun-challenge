@@ -15,18 +15,18 @@ export default class StreamService {
         });
     }
 
-    static getStreams(user) {
+    static getStream(user) {
         return new Promise(function(resolve, reject) {
             let url = `https://wind-bow.gomix.me/twitch-api/streams/${user}`;
 
             $.getJSON(url + "?callback=?", function(response) {
-                let stream = {
+                let status = {
                     online: !!response.stream
                 };
-                if (stream.online) {
-                    stream.status = response.stream.channel.status;
+                if (status.online) {
+                    status.stream = response.stream.channel.status;
                 }
-                resolve(stream);
+                resolve(status);
             });
         });
     }
