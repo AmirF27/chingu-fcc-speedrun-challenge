@@ -1,5 +1,13 @@
 @import "speedrun-styles";
 
+a {
+    color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 .user-logo, .user-info {
     display: inline-block;
     margin: 2%;
@@ -7,10 +15,6 @@
 
 .user-logo {
     width: 18%;
-
-    img {
-        width: 100%;
-    }
 }
 
 .user-info {
@@ -29,4 +33,24 @@
 .list {
     margin: 0 auto;
     width: 600px;
+}
+
+.list, .loading {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 460px) {
+    .user-logo {
+        display: block;
+        width: 100%;
+
+        img {
+            width: 100px;
+        }
+    }
+
+    .user-info {
+        display: block;
+        width: 100%;
+    }
 }

@@ -91,6 +91,27 @@ main.container {
     }
 }
 
+.btn-group {
+    font-size:0;
+
+    .btn {
+        border-radius: 0;
+        border-right: 1px solid $white;
+        font-size: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+
+        &:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+
+        &:last-child {
+            border: none;
+            border-radius: 0 3px 3px 0;
+        }
+    }
+}
+
 .text-field {
     border: 1px solid $color-divider;
     border-radius: 3px;
