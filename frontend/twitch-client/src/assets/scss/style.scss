@@ -1,13 +1,5 @@
 @import "speedrun-styles";
 
-a {
-    color: inherit;
-
-    &:hover {
-        text-decoration: underline;
-    }
-}
-
 .user-logo, .user-info {
     display: inline-block;
     margin: 2%;
@@ -20,6 +12,14 @@ a {
 .user-info {
     vertical-align: top;
     width: 73%;
+
+    a {
+        color: inherit;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
 }
 
 .online {
