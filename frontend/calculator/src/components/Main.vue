@@ -45,7 +45,20 @@ export default {
                 [1, 2, 3, ""],
                 [0, ".", "=", "+"]
             ],
-            result: 0
+            result: 0,
+            keyCodes: {
+                numpadZero: 96,
+                numpadNine: 105,
+                zero: 48,
+                nine: 57,
+                add: 107,
+                sub: 109,
+                mul: 106,
+                div: 111,
+                enter: 13,
+                backspace: 8,
+                del: 46
+            }
         };
     },
     methods: {
@@ -56,6 +69,43 @@ export default {
             this.calculator.clear();
             this.result = 0;
         }
+    },
+    created() {
+        window.addEventListener("keyup", event => {
+            if (event.keyCode >= this.keyCodes.numpadZero &&
+                event.keyCode <= this.keyCodes.numpadNine) {
+                    this.calculator.add(event.keyCode - this.keyCodes.numpadZero);
+                }
+            else if (event.keyCode >= this.keyCodes.zero &&
+                event.keyCode <= this.keyCodes.nine) {
+                    this.calculator.add(event.keyCode - this.keyCodes.zero);
+                }
+            else {
+                switch (event.keyCode) {
+                    case this.keyCodes.add:
+                        this.calculator.add("+", this.result);
+                        break;
+                    case this.keyCodes.sub:
+                        this.calculator.add("-", this.result);
+                        break;
+                    case this.keyCodes.mul:
+                        this.calculator.add("*", this.result);
+                        break;
+                    case this.keyCodes.div:
+                        this.calculator.add("/", this.result);
+                        break;
+                    case this.keyCodes.backspace:
+                        this.calculator.delete();
+                        break;
+                    case this.keyCodes.del:
+                        this.clear();
+                        break;
+                    case this.keyCodes.enter:
+                        this.calculate();
+                        break;
+                }
+            }
+        });
     }
 };
 </script>

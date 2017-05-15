@@ -12,6 +12,10 @@ export default class Calculator {
             if (!this.isOperation(this.calcString[this.calcString.length - 1])) {
                 this.calcString.push(val);
             }
+            else {
+                this.calcString.pop();
+                this.calcString.push(val);
+            }
         }
         else {
             if (this.calcString.length == 0 || this.isOperation(this.calcString[this.calcString.length - 1])) {
