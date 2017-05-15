@@ -78,7 +78,7 @@ main.container {
     color: $white;
 
     &:hover {
-        background: lighten($color-primary, 8%);
+        background: darken($color-primary, 8%);
     }
 }
 
@@ -88,6 +88,15 @@ main.container {
 
     &:hover {
         background: darken($color-accent, 8%);
+    }
+}
+
+.btn--negative {
+    background: $color-negative;
+    color: $white;
+
+    &:hover {
+        background: darken($color-negative, 8%);
     }
 }
 

@@ -1,1 +1,45 @@
 @import "speedrun-styles";
+
+.calculator {
+    background: $color-text-secondary;
+    border-radius: 5px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 15px;
+    width: 300px;
+
+    .screen {
+        background: $color-primary-light;
+        border-radius: 3px;
+        padding: 10px;
+
+        .calc-string {
+            height: 20px;
+            line-height: 20px;
+        }
+
+        .result {
+            font-family: "Orbitron", sans-serif;
+            font-size: 25px;
+            height: 30px;
+            line-height: 40px;
+        }
+    }
+
+    .btn {
+        width: 21%;
+    }
+
+    .screen, .btn {
+        margin: 2%;
+    }
+
+    .ac {
+        width: 46%;
+    }
+
+    .add {
+        height: 92px;
+        margin-top: -46px;
+    }
+}

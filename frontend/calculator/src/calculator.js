@@ -4,19 +4,41 @@ export default class Calculator {
     }
 
     add(val, start = 0) {
-        if (!isNaN(val) && isNaN(this.calcString[this.calcString.length - 1])) {
-            this.calcString.push(val);
-        }
-
-        if (isNaN(val)) {
+        if (this.isOperation(val)) {
             if (this.calcString.length == 0) {
                 this.calcString.push(start);
             }
 
-            if (!isNaN(this.calcString[this.calcString.length - 1])) {
+            if (!this.isOperation(this.calcString[this.calcString.length - 1])) {
                 this.calcString.push(val);
             }
         }
+        else {
+            if (this.calcString.length == 0 || this.isOperation(this.calcString[this.calcString.length - 1])) {
+                this.calcString.push(val);
+            }
+            else {
+                this.calcString.push(this.calcString.pop() * 10 + val);
+            }
+        }
+    }
+
+    delete() {
+        if (this.isOperation(this.calcString[this.calcString.length - 1])) {
+            this.calcString.pop();
+        }
+        else {
+            if (parseInt(this.calcString[this.calcString.length - 1] / 10) > 0) {
+                this.calcString.push(parseInt(this.calcString.pop() / 10));
+            }
+            else {
+                this.calcString.pop();
+            }
+        }
+    }
+
+    isOperation(val) {
+        return val == "+" || val == "-" || val == "*" || val == "/";
     }
 
     calculate() {
@@ -24,7 +46,7 @@ export default class Calculator {
             this.doMultiplicative();
             let result = this.doAdditive();
 
-            this.calcString = [];
+            this.clear();
 
             return result;
         }
@@ -68,6 +90,10 @@ export default class Calculator {
         }
 
         return result;
+    }
+
+    clear() {
+        this.calcString = [];
     }
 
     toString() {
