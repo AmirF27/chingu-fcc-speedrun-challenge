@@ -7,10 +7,10 @@
             </div>
             <template v-for="row in layout">
                 <template v-for="item in row">
-                    <button v-if="!isNaN(item)" @click="calculator.add(item)" class="btn btn--default">
+                    <button v-if="!isNaN(item)" @click="calculator.addNumber(item)" class="btn btn--default">
                         {{ item }}
                     </button>
-                    <button v-else-if="calculator.isOperation(item)" @click="calculator.add(item, result)" class="btn btn--default" :class="{ add: item == '+' }">
+                    <button v-else-if="calculator.isOperation(item)" @click="calculator.addOperation(item, result)" class="btn btn--default" :class="{ add: item == '+' }">
                         {{ item }}
                     </button>
                     <button v-else-if="item == '='" @click="calculate" class="btn btn--primary">
@@ -20,6 +20,9 @@
                         {{ item }}
                     </button>
                     <button v-else-if="item == 'CE'" @click="calculator.delete()" class="btn btn--negative">
+                        {{ item }}
+                    </button>
+                    <button v-else-if="item == '.'" @click="calculator.addDecimal()" class="btn btn--default">
                         {{ item }}
                     </button>
                     <button v-else class="btn btn--default">
@@ -57,7 +60,8 @@ export default {
                 div: 111,
                 enter: 13,
                 backspace: 8,
-                del: 46
+                del: 46,
+                point: 110
             }
         };
     },
@@ -74,31 +78,34 @@ export default {
         window.addEventListener("keyup", event => {
             if (event.keyCode >= this.keyCodes.numpadZero &&
                 event.keyCode <= this.keyCodes.numpadNine) {
-                    this.calculator.add(event.keyCode - this.keyCodes.numpadZero);
+                    this.calculator.addNumber(event.keyCode - this.keyCodes.numpadZero);
                 }
             else if (event.keyCode >= this.keyCodes.zero &&
                 event.keyCode <= this.keyCodes.nine) {
-                    this.calculator.add(event.keyCode - this.keyCodes.zero);
+                    this.calculator.addNumber(event.keyCode - this.keyCodes.zero);
                 }
             else {
                 switch (event.keyCode) {
                     case this.keyCodes.add:
-                        this.calculator.add("+", this.result);
+                        this.calculator.addOperation("+", this.result);
                         break;
                     case this.keyCodes.sub:
-                        this.calculator.add("-", this.result);
+                        this.calculator.addOperation("-", this.result);
                         break;
                     case this.keyCodes.mul:
-                        this.calculator.add("*", this.result);
+                        this.calculator.addOperation("*", this.result);
                         break;
                     case this.keyCodes.div:
-                        this.calculator.add("/", this.result);
+                        this.calculator.addOperation("/", this.result);
                         break;
                     case this.keyCodes.backspace:
                         this.calculator.delete();
                         break;
                     case this.keyCodes.del:
                         this.clear();
+                        break;
+                    case this.keyCodes.point:
+                        this.calculator.addDecimal();
                         break;
                     case this.keyCodes.enter:
                         this.calculate();
