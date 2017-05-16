@@ -72,7 +72,7 @@ Copy this table as needed to make a separate table for each team member for reco
 | 5/11/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-local-weather-1b15893eb401)  | [Show the Local Weather](./frontend/local-weather) |  |
 | 5/12/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-wikipedia-viewer-38fdf449de40)  | [Build a Wikipedia Viewer](./frontend/wikipedia-viewer) |  |
 | 5/13/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-twitch-tv-client-5335c1ead4b5)  | [Use the Twitch.tv JSON API](./frontend/twitch-client) |  |
-|      |  [ ]()  | [Build a JavaScript Calculator](./frontend/calculator) |  |
+| 5/16/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-javascript-calculator-54f6392726c1)  | [Build a JavaScript Calculator](./frontend/calculator) |  |
 |      |  [ ]()  | [Build a Pomodoro Clock](./frontend/pomodoro-clock) |  |
 |      |  [ ]()  | [Build a Tic Tac Toe Game](./frontend/tictactoe-game) |  |
 |      |  [ ]()  | [Build a Simon Game](./frontend/simon-game) |  |

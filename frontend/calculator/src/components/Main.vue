@@ -22,7 +22,7 @@
                     <button v-else-if="item == 'CE'" @click="calculator.delete()" class="btn btn--negative">
                         {{ item }}
                     </button>
-                    <button v-else-if="item == '.'" @click="calculator.addDecimal()" class="btn btn--default">
+                    <button v-else-if="item == '.'" @click="calculator.addPoint()" class="btn btn--default">
                         {{ item }}
                     </button>
                     <button v-else class="btn btn--default">
@@ -59,7 +59,7 @@ export default {
                 mul: 106,
                 div: 111,
                 enter: 13,
-                backspace: 8,
+                bs: 8,
                 del: 46,
                 point: 110
             }
@@ -67,50 +67,55 @@ export default {
     },
     methods: {
         calculate() {
-            this.result = this.calculator.calculate() || this.result;
+            var res = this.calculator.calculate();
+
+            if (res.success) {
+                this.result = res.result;
+            }
         },
         clear() {
             this.calculator.clear();
             this.result = 0;
+        },
+        isNumber(key) {
+            return (key >= this.keyCodes.numpadZero &&
+                key <= this.keyCodes.numpadNine) ||
+                (key >= this.keyCodes.zero &&
+                key <= this.keyCodes.nine);
+        },
+        isOperation(key) {
+            return key == this.keyCodes.add ||
+                key == this.keyCodes.sub ||
+                key == this.keyCodes.mul ||
+                key == this.keyCodes.div;
+        },
+        toNumber(key) {
+            return key >= this.keyCodes.numpadZero
+                ? key - this.keyCodes.numpadZero
+                : key - this.keyCodes.zero;
         }
     },
     created() {
-        window.addEventListener("keyup", event => {
-            if (event.keyCode >= this.keyCodes.numpadZero &&
-                event.keyCode <= this.keyCodes.numpadNine) {
-                    this.calculator.addNumber(event.keyCode - this.keyCodes.numpadZero);
-                }
-            else if (event.keyCode >= this.keyCodes.zero &&
-                event.keyCode <= this.keyCodes.nine) {
-                    this.calculator.addNumber(event.keyCode - this.keyCodes.zero);
-                }
-            else {
-                switch (event.keyCode) {
-                    case this.keyCodes.add:
-                        this.calculator.addOperation("+", this.result);
-                        break;
-                    case this.keyCodes.sub:
-                        this.calculator.addOperation("-", this.result);
-                        break;
-                    case this.keyCodes.mul:
-                        this.calculator.addOperation("*", this.result);
-                        break;
-                    case this.keyCodes.div:
-                        this.calculator.addOperation("/", this.result);
-                        break;
-                    case this.keyCodes.backspace:
-                        this.calculator.delete();
-                        break;
-                    case this.keyCodes.del:
-                        this.clear();
-                        break;
-                    case this.keyCodes.point:
-                        this.calculator.addDecimal();
-                        break;
-                    case this.keyCodes.enter:
-                        this.calculate();
-                        break;
-                }
+        document.addEventListener("keyup", event => {
+            if (this.isNumber(event.keyCode)) {
+                this.calculator.addNumber(this.toNumber(event.keyCode));
+            }
+            else if (this.isOperation(event.keyCode)) {
+                this.calculator.addOperation(
+                    String.fromCharCode(event.keyCode - 64),
+                    this.result);
+            }
+            else if (event.keyCode == this.keyCodes.point) {
+                this.calculator.addPoint();
+            }
+            else if (event.keyCode == this.keyCodes.enter) {
+                this.calculate();
+            }
+            else if (event.keyCode == this.keyCodes.bs) {
+                this.calculator.delete();
+            }
+            else if (event.keyCode == this.keyCodes.del) {
+                this.clear();
             }
         });
     }

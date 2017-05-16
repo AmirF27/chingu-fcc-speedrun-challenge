@@ -4,13 +4,11 @@ export default class Calculator {
     }
 
     add(val, start = 0) {
-        val = val.toString();
-
         if (this.isOperation(val)) {
             this.addOperation(val, start);
         }
         else if (val == ".") {
-            this.addDecimal();
+            this.addPoint();
         }
         else {
             this.addNumber(val);
@@ -44,7 +42,7 @@ export default class Calculator {
         this.calcString.push(val);
     }
 
-    addDecimal() {
+    addPoint() {
         if (this.calcString.length == 0 || this.isOperation(this.last())) {
             this.calcString.push("0");
         }
@@ -74,14 +72,18 @@ export default class Calculator {
     }
 
     calculate() {
-        if (!this.isOperation(this.last()) && this.last() != ".") {
+        var success = false,
+            result = undefined;
+
+        if (this.calcString.length > 0 && !this.isOperation(this.last()) && this.last() != ".") {
             this.doMultiplicative();
-            let result = this.doAdditive();
+            result = this.doAdditive();
+            success = true;
 
             this.clear();
-
-            return result;
         }
+
+        return { success, result };
     }
 
     doMultiplicative() {
