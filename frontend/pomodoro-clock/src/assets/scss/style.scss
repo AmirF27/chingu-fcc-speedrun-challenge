@@ -22,3 +22,10 @@
         letter-spacing: 0.2em;
     }
 }
+
+@media screen and (max-width: 340px) {
+    .options div {
+        float: none;
+        margin-bottom: 20px;
+    }
+}

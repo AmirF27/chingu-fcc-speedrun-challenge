@@ -13,6 +13,14 @@ export default class Pomodoro {
         this.seconds = 0;
         this.minutes = sessionTime;
         this.current = "session";
+        this.sounds = {
+            "session": new Howl({
+                src: require("./assets/audio/and-a-happy-new-year-sms.mp3")
+            }),
+            "break": new Howl({
+                src: require("./assets/audio/jingle-bells-sms.mp3")
+            })
+        };
         this[inProgress] = false;
         this[timer] = undefined;
     }
@@ -49,22 +57,21 @@ export default class Pomodoro {
     }
 
     startTimer(type) {
-        if (type == "session" || type == "work") {
+        if (type == "session" || type == "break") {
             this.seconds = STARTING_SECONDS;
             this.minutes = type == "session" ? this.sessionTime - 1 : this.breakTime - 1;
             this.current = type;
+            this.sounds[type].play();
             clearInterval(this[timer]);
             this[timer] = setInterval(() => {
-                if (!this[paused]) {
-                    if (--this.seconds <= 0) {
-                        this.seconds = STARTING_SECONDS;
-                        if (this.minutes-- <= 0) {
-                            if (type == "session") {
-                                this.startTimer("break");
-                            }
-                            else {
-                                this.stop();
-                            }
+                if (!this[paused] && --this.seconds <= 0) {
+                    this.seconds = STARTING_SECONDS;
+                    if (this.minutes-- <= 0) {
+                        if (type == "session") {
+                            this.startTimer("break");
+                        }
+                        else {
+                            this.startTimer("session");
                         }
                     }
                 }
