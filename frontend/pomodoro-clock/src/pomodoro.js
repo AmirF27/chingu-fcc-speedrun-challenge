@@ -1,40 +1,55 @@
 const STARTING_SECONDS = 59;
 
 var started = Symbol();
+var paused = Symbol();
 var timer = Symbol();
 
 export default class Pomodoro {
-    constructor(workTime = 25, breakTime = 5) {
-        this.workTime = workTime;
+    constructor(sessionTime = 25, breakTime = 5) {
+        this._sessionTime = sessionTime;
         this.breakTime = breakTime;
         this.seconds = 0;
-        this.minutes = workTime;
-        this.current = "none";
+        this.minutes = sessionTime;
+        this.current = "session";
         this[started] = false;
         this[timer] = undefined;
     }
 
+    set sessionTime(value) {
+        this._sessionTime = value;
+        this.minutes = value;
+    }
+
+    get sessionTime() {
+        return this._sessionTime;
+    }
+
     start() {
-        if (!this[started]) {
+        if (this[paused]) {
+            this[paused] = false;
+        }
+        else if (!this[started]) {
             this[started] = true;
-            this.startTimer("work");
+            this.startTimer("session");
         }
     }
 
     startTimer(type) {
         this.seconds = STARTING_SECONDS;
-        this.minutes = type == "work" ? this.workTime - 1 : this.breakTime - 1;
+        this.minutes = type == "session" ? this.sessionTime - 1 : this.breakTime - 1;
         this.current = type;
         clearInterval(this[timer]);
         this[timer] = setInterval(() => {
-            if (--this.seconds <= 0) {
-                this.seconds = STARTING_SECONDS;
-                if (this.minutes-- <= 0) {
-                    if (type == "work") {
-                        this.startTimer("break");
-                    }
-                    else {
-                        this.stop();
+            if (!this[paused]) {
+                if (--this.seconds <= 0) {
+                    this.seconds = STARTING_SECONDS;
+                    if (this.minutes-- <= 0) {
+                        if (type == "session") {
+                            this.startTimer("break");
+                        }
+                        else {
+                            this.stop();
+                        }
                     }
                 }
             }
@@ -43,8 +58,20 @@ export default class Pomodoro {
 
     stop() {
         clearInterval(this[timer]);
-        this.minutes = this.workTime;
+        this.minutes = this.sessionTime;
         this.seconds = 0;
+        this.current = "session";
         this[started] = false;
+        this[paused] = false;
+    }
+
+    pause() {
+        if (this[started]) {
+            this[paused] = true;
+        }
+    }
+
+    formatSeconds() {
+        return this.seconds < 10 ? "0" + this.seconds : this.seconds.toString();
     }
 }
