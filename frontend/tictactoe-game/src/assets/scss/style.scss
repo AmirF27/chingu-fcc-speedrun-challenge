@@ -1,1 +1,22 @@
 @import "speedrun-styles";
+
+.board {
+    background: $color-divider;
+    font-size: 0;
+    height: 400px;
+    margin: 0 auto;
+    width: 400px;
+
+    div {
+        border: 1px solid $white;
+        box-sizing: border-box;
+        color: $white;
+        display: inline-block;
+        font-size: 20px;
+        height: 133.33px;
+        line-height: 133.33px;
+        text-align: center;
+        vertical-align: middle;
+        width: 133.33px;
+    }
+}
