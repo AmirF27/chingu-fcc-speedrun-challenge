@@ -3,7 +3,7 @@
         <div class="board">
             <template v-for="(row, rowIndex) in board">
                 <div v-for="(square, index) in row"
-                    @click="fillSquare(rowIndex, index)">
+                    @click="makeMove(rowIndex, index)">
                     {{ square }}
                 </div>
             </template>
@@ -20,58 +20,68 @@ export default {
                 ["", "", ""],
                 ["", "", ""]
             ],
-            counter: 0
+            gameOver: false,
+            moves: 0,
+            turn: "player"
         };
     },
     methods: {
-        fillSquare(row, index) {
-            this.$set(this.board[row], index, "X");
-
-            this.counter++;
-
-            if (this.won()) {
-                console.log("Won!");
+        makeMove(row, index) {
+            if (!this.gameOver && this.turn == "player" && !this.board[row][index]) {
+                this.setSquare(row, index, "X");
+                this.turn = "computer";
+                setTimeout(this.computerTurn, 500);
             }
-
-            if (this.counter < 9) {
+        },
+        computerTurn() {
+            if (!this.gameOver && this.moves < this.board.length ** 2) {
                 let square;
 
                 do {
                     square = this.randomSquare();
                 } while (this.board[square.x][square.y]);
 
-                this.$set(this.board[square.x], square.y, "O");
-                this.counter++;
+                this.setSquare(square.x, square.y, "O");
+                this.turn = "player";
+            }
+        },
+        setSquare(row, index, mark) {
+            this.$set(this.board[row], index, mark);
+            this.moves++;
 
-                if (this.won()) {
-                    console.log("Won!");
-                }
+            if (this.won()) {
+                this.gameOver = true;
+                console.log("Won!");
             }
         },
         randomSquare() {
-            var square = {};
-
-            Object.assign(square, {
+            return {
                 x: Math.floor(Math.random() * this.board.length),
                 y: Math.floor(Math.random() * this.board.length)
-            });
-
-            return square;
+            };
         },
         won() {
+            var diagonal1 = [],
+                diagonal2 = [];
+
             for (let i = 0; i < this.board.length; i++) {
                 let horizontal = [],
-                    vertical = [],
-                    diagonal = [];
+                    vertical = [];
                 for (let j = 0; j < this.board.length; j++) {
                     horizontal.push(this.board[i][j]);
                     vertical.push(this.board[j][i]);
-                    diagonal.push(this.board[j][j]);
                 }
 
-                if (this.check(horizontal) || this.check(vertical) || this.check(diagonal)) {
+                diagonal1.push(this.board[i][i]);
+                diagonal2.push(this.board[i][this.board.length - 1 - i]);
+
+                if (this.check(horizontal) || this.check(vertical)) {
                     return true;
                 }
+            }
+
+            if (this.check(diagonal1) || this.check(diagonal2)) {
+                return true;
             }
 
             return false;
