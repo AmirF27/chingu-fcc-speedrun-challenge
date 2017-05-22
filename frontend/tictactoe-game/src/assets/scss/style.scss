@@ -1,14 +1,8 @@
 @import "speedrun-styles";
 
 .board {
-    background: $color-divider;
-    color: $white;
-    font-family: "Rock Salt", cursive;
     font-size: 0;
     height: 400px;
-    margin: 0 auto;
-    text-align: center;
-    width: 400px;
 
     .choice {
         font-size: 40px;
@@ -35,4 +29,21 @@
         vertical-align: middle;
         width: 133.33px;
     }
+}
+
+.message {
+    p {
+        font-size: 1.2em;
+        letter-spacing: 3px;
+        margin: 0;
+        padding: 20px;
+    }
+}
+
+.board, .message {
+    background: #222;
+    color: $white;
+    font-family: "Rock Salt", cursive;
+    margin: 0 auto;
+    width: 400px;
 }

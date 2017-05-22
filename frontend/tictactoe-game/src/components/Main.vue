@@ -1,6 +1,11 @@
 <template>
     <main class="container">
-        <div class="board">
+        <div class="center-text message">
+            <p v-if="gameOver">{{ gameResult }}</p>
+            <p v-else-if="turn == 'player'">Your turn</p>
+            <p v-else-if="turn == 'computer'">Computer's turn</p>
+        </div>
+        <div class="board center-text">
             <div v-if="!gameStarted" class="choice">
                 <p>Would you like to play as X or O?</p>
                 <button @click="startGame('X')" class="btn btn--default">X</button>
@@ -28,28 +33,45 @@ export default {
             gameOver: false,
             gameStarted: false,
             moves: 0,
-            turn: "player",
+            turn: "",
             playerMark: "",
-            computerMark: ""
+            computerMark: "",
+            gameResult: "Draw"
         };
     },
     methods: {
         startGame(playerMark) {
             this.playerMark = playerMark;
             this.computerMark = playerMark == "X" ? "O" : "X";
+            this.gameStarted = true;
+            this.resetGame();
+        },
+        resetGame() {
             this.turn = "player";
             this.gameOver = false;
-            this.gameStarted = true;
+            this.moves = 0;
+            this.gameResult = "Draw";
         },
-        makeMove(row, index) {
-            if (!this.gameOver && this.turn == "player" && !this.board[row][index]) {
-                this.setSquare(row, index, this.playerMark);
-                this.turn = "computer";
-                setTimeout(this.computerTurn, 500);
+        resetBoard() {
+            for (let row of this.board) {
+                for (let i = 0; i < row.length; i++) {
+                    row[i] = "";
+                }
             }
         },
-        computerTurn() {
-            if (!this.gameOver && this.moves < this.board.length ** 2) {
+        makeMove(row, index) {
+            if (!this.gameOver &&
+                    this.turn == "player" &&
+                    !this.board[row][index]) {
+                this.setSquare(row, index, this.playerMark);
+                this.turn = "computer";
+                setTimeout(this.computerMove, 500);
+            }
+        },
+        computerMove() {
+            if (!this.gameOver &&
+                    this.turn == "computer" &&
+                    this.moves < this.board.length ** 2) {
                 let square;
 
                 do {
@@ -64,9 +86,13 @@ export default {
             this.$set(this.board[row], index, mark);
             this.moves++;
 
-            if (this.won()) {
+            if (this.won() || this.moves == this.board.length ** 2) {
                 this.gameOver = true;
-                console.log("Won!");
+                this.setGameResult();
+                setTimeout(() => {
+                    this.resetGame();
+                    this.resetBoard();
+                }, 1000);
             }
         },
         randomSquare() {
@@ -112,6 +138,16 @@ export default {
             }
 
             return true;
+        },
+        setGameResult() {
+            if (this.moves != this.board.length ** 2) {
+                if (this.turn == "player") {
+                    this.gameResult = "You win!";
+                }
+                else {
+                    this.gameResult = "You lose...";
+                }
+            }
         }
     }
 };
