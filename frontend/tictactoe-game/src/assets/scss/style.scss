@@ -2,21 +2,36 @@
 
 .board {
     background: $color-divider;
+    color: $white;
     font-family: "Rock Salt", cursive;
     font-size: 0;
     height: 400px;
     margin: 0 auto;
+    text-align: center;
     width: 400px;
 
-    div {
+    .choice {
+        font-size: 40px;
+
+        p {
+            margin: 0;
+            padding: 20px;
+        }
+
+        button {
+            font-family: inherit;
+            height: 80px;
+            width: 80px;
+        }
+    }
+
+    .square {
         border: 1px solid $white;
         box-sizing: border-box;
-        color: $white;
         display: inline-block;
         font-size: 60px;
         height: 133.33px;
         line-height: 133.33px;
-        text-align: center;
         vertical-align: middle;
         width: 133.33px;
     }

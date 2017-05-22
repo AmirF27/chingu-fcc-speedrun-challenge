@@ -1,9 +1,14 @@
 <template>
     <main class="container">
         <div class="board">
-            <template v-for="(row, rowIndex) in board">
+            <div v-if="!gameStarted" class="choice">
+                <p>Would you like to play as X or O?</p>
+                <button @click="startGame('X')" class="btn btn--default">X</button>
+                <button @click="startGame('O')" class="btn btn--default">O</button>
+            </div>
+            <template v-else v-for="(row, rowIndex) in board">
                 <div v-for="(square, index) in row"
-                    @click="makeMove(rowIndex, index)">
+                    @click="makeMove(rowIndex, index)" class="square">
                     {{ square }}
                 </div>
             </template>
@@ -21,14 +26,24 @@ export default {
                 ["", "", ""]
             ],
             gameOver: false,
+            gameStarted: false,
             moves: 0,
-            turn: "player"
+            turn: "player",
+            playerMark: "",
+            computerMark: ""
         };
     },
     methods: {
+        startGame(playerMark) {
+            this.playerMark = playerMark;
+            this.computerMark = playerMark == "X" ? "O" : "X";
+            this.turn = "player";
+            this.gameOver = false;
+            this.gameStarted = true;
+        },
         makeMove(row, index) {
             if (!this.gameOver && this.turn == "player" && !this.board[row][index]) {
-                this.setSquare(row, index, "X");
+                this.setSquare(row, index, this.playerMark);
                 this.turn = "computer";
                 setTimeout(this.computerTurn, 500);
             }
@@ -41,7 +56,7 @@ export default {
                     square = this.randomSquare();
                 } while (this.board[square.x][square.y]);
 
-                this.setSquare(square.x, square.y, "O");
+                this.setSquare(square.x, square.y, this.computerMark);
                 this.turn = "player";
             }
         },
