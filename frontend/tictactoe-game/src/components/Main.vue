@@ -1,7 +1,13 @@
 <template>
     <main class="container">
         <div class="center-text message">
-            <p v-if="gameOver">{{ gameResult }}</p>
+            <template v-if="gameOver">
+                <template v-if="gameWon">
+                    <p v-if="turn == 'computer'">You win!</p>
+                    <p v-else>You lose...</p>
+                </template>
+                <p v-else>Draw</p>
+            </template>
             <p v-else-if="turn == 'player'">Your turn</p>
             <p v-else-if="turn == 'computer'">Computer's turn</p>
         </div>
@@ -22,6 +28,8 @@
 </template>
 
 <script>
+"use strict";
+
 export default {
     data() {
         return {
@@ -32,11 +40,11 @@ export default {
             ],
             gameOver: false,
             gameStarted: false,
+            gameWon: false,
             moves: 0,
             turn: "",
             playerMark: "",
-            computerMark: "",
-            gameResult: "Draw"
+            computerMark: ""
         };
     },
     methods: {
@@ -50,7 +58,7 @@ export default {
             this.turn = "player";
             this.gameOver = false;
             this.moves = 0;
-            this.gameResult = "Draw";
+            this.gameWon = false;
         },
         resetBoard() {
             for (let row of this.board) {
@@ -86,9 +94,10 @@ export default {
             this.$set(this.board[row], index, mark);
             this.moves++;
 
-            if (this.won() || this.moves == this.board.length ** 2) {
+            this.gameWon = this.won();
+
+            if (this.gameWon || this.moves == this.board.length ** 2) {
                 this.gameOver = true;
-                this.setGameResult();
                 setTimeout(() => {
                     this.resetGame();
                     this.resetBoard();
@@ -138,16 +147,6 @@ export default {
             }
 
             return true;
-        },
-        setGameResult() {
-            if (this.moves != this.board.length ** 2) {
-                if (this.turn == "player") {
-                    this.gameResult = "You win!";
-                }
-                else {
-                    this.gameResult = "You lose...";
-                }
-            }
         }
     }
 };

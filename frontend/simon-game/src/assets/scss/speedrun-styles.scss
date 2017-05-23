@@ -1,0 +1,279 @@
+@import "speedrun-variables";
+
+body {
+    background: lighten($color-primary-light, 15%);
+    color: $color-text-primary;
+    font-family: $default-font;
+    font-size: 16px;
+    margin: 0;
+}
+
+h1, h2 {
+    font-weight: 400;
+}
+
+p {
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+}
+
+main.container {
+    margin-bottom: 100px;
+    margin-top: 30px;
+}
+
+%clearfix {
+    &:after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+}
+
+.container {
+    margin: 0 auto;
+    width: 80%;
+
+    @extend %clearfix;
+}
+
+.title {
+    font-size: 1.8em;
+    margin: 0;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.responsive-img {
+    max-width: 100%;
+}
+
+.btn {
+    border: none;
+    border-radius: 3px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px;
+    outline: none;
+    padding: 0 15px 0;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.2s linear;
+    vertical-align: middle;
+}
+
+.btn--default {
+    background: $color-primary;
+    color: $white;
+
+    &:hover {
+        background: darken($color-primary, 8%);
+    }
+}
+
+.btn--primary {
+    background: $color-accent;
+    color: $color-text-primary;
+
+    &:hover {
+        background: darken($color-accent, 8%);
+    }
+}
+
+.btn--negative {
+    background: $color-negative;
+    color: $white;
+
+    &:hover {
+        background: darken($color-negative, 8%);
+    }
+}
+
+.btn-group {
+    font-size:0;
+
+    .btn {
+        border-radius: 0;
+        border-right: 1px solid $white;
+        font-size: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+
+        &:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+
+        &:last-child {
+            border: none;
+            border-radius: 0 3px 3px 0;
+        }
+    }
+}
+
+.text-field {
+    border: 1px solid $color-divider;
+    border-radius: 3px;
+    box-shadow: inset 0 0 3px 0 $color-divider;
+    box-sizing: border-box;
+    color: $color-text-primary;
+    font-family: $default-font;
+    font-size: 1em;
+    height: 40px;
+    margin: 10px;
+    min-width: 200px;
+    outline: none;
+    padding: 0 15px 0;
+    transition: all 0.2s linear;
+    vertical-align: middle;
+
+    &:focus {
+        border-color: $color-primary;
+        box-shadow: inset 0 0 5px 0 $color-primary;
+    }
+}
+
+.list {
+    list-style: none;
+    margin-top: 30px;
+    max-width: 100%;
+    padding: 0;
+    width: 100%;
+
+    .list-item {
+        background: $color-primary-light;
+        border-radius: 3px;
+        margin-bottom: 15px;
+        padding: 20px;
+    }
+
+    .list-link {
+        padding: 0;
+        transition: all 0.2s linear;
+
+        a {
+            color: $color-text-primary;
+            display: block;
+            padding: 20px;
+        }
+
+        &:hover {
+            background: darken($color-primary-light, 10%);
+        }
+    }
+}
+
+.spinner {
+    font-size: 0;
+
+    .btn {
+        font-size: 0.8rem;
+        height: 30px;
+        line-height: 30px;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+        width: 30px;
+
+        &:first-of-type {
+            border-radius: 3px 0 0 3px;
+        }
+
+        &:last-of-type {
+            border: none;
+            border-radius: 0 3px 3px 0;
+        }
+    }
+
+    .number {
+        border: 1px solid $color-primary;
+        box-sizing: border-box;
+        display: inline-block;
+        font-size: 1.2rem;
+        height: 30px;
+        line-height: 30px;
+        vertical-align: middle;
+        width: 60px;
+    }
+}
+
+footer {
+    padding-bottom: 15px;
+    padding-top: 15px;
+
+    p {
+        margin: 0;
+    }
+
+    a {
+        border-bottom: 1px dotted $white;
+        color: $white;
+        max-height: 100px;
+        transition: all 0.2s linear;
+
+        &:hover {
+            border-color: $color-accent;
+            color: $color-accent;
+        }
+    }
+}
+
+header, footer {
+    background: $color-primary-dark;
+    color: $white;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.fixed-bottom {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+
+@media screen and (max-width: 580px) {
+    .title {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    footer {
+        .left, .right {
+            float: none;
+        }
+    }
+
+    footer {
+        padding-bottom: 10px;
+        padding-top: 10px;
+
+        p {
+            margin: 0;
+        }
+
+        .copyright {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+    }
+
+    main.container {
+        margin-bottom: 140px;
+    }
+}
