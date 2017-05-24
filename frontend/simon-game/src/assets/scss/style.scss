@@ -1,1 +1,37 @@
 @import "speedrun-styles";
+@import "variables";
+
+.simon {
+    font-size: 0;
+    height: 300px;
+    width: 300px;
+
+    .simon-btn {
+        box-sizing: border-box;
+        display: inline-block;
+        height: 150px;
+        padding: 20px;
+        width: 150px;
+    }
+
+    .green {
+        background: $green;
+        // border-top-left-radius: 150px;
+    }
+
+    .red {
+        background: $red;
+    }
+
+    .yellow {
+        background: $yellow;
+    }
+
+    .blue {
+        background: $blue;
+    }
+
+    button, span {
+        font-size: 1rem;
+    }
+}
