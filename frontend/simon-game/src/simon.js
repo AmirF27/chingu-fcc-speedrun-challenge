@@ -7,6 +7,7 @@ export default class Simon {
         this[colors] = ["green", "red", "yellow", "blue"];
         this.started = false;
         this[moveCount] = 0;
+        this.strict = false;
     }
 
     start() {
@@ -20,6 +21,16 @@ export default class Simon {
         this.addToPattern();
     }
 
+    playPattern() {
+        return (function*(pattern) {
+            var current = 0;
+
+            while (current < pattern.length) {
+                yield pattern[current++];
+            }
+        })(this.pattern);
+    }
+
     reset() {
         this.pattern = [];
         this[moveCount] = 0;
@@ -27,7 +38,6 @@ export default class Simon {
 
     addToPattern() {
         this.pattern.push(this.randomColor());
-        console.log(this.pattern);
     }
 
     randomColor() {
@@ -36,11 +46,23 @@ export default class Simon {
 
     check(color) {
         if (color != this.pattern[this[moveCount]]) {
-            this[moveCount] = 0;
+            if (this.strict) {
+                this.reset();
+                this.addToPattern();
+            }
+            else {
+                this[moveCount] = 0;
+            }
+
+            return true;
         }
         else if (++this[moveCount] == this.pattern.length) {
             this[moveCount] = 0;
             this.addToPattern();
+
+            return true;
         }
+
+        return false;
     }
 }
