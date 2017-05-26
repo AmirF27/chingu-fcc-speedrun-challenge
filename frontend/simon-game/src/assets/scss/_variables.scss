@@ -1,3 +1,16 @@
 //           green   red     yellow  blue
-$btn-colors: #2cb321 #b51302 #dbcd00 #2592ff;
+$btn-colors: #2cb321 #b51302 #C2B400 #0C79E6;
 $colors: green red yellow blue;
+$btn-border-color: #333;
+$btn-dimens: 200px;
+$btn-border-width: 10px;
+$btn-borders:
+    "#{$btn-border-width} #{$btn-border-width / 2} #{$btn-border-width / 2} #{$btn-border-width}"
+    "#{$btn-border-width} #{$btn-border-width} #{$btn-border-width / 2} #{$btn-border-width / 2}"
+    "#{$btn-border-width / 2} #{$btn-border-width / 2} #{$btn-border-width} #{$btn-border-width}"
+    "#{$btn-border-width / 2} #{$btn-border-width} #{$btn-border-width} #{$btn-border-width / 2}";
+$btn-border-radius:
+    "#{$btn-dimens} 0 0 0"
+    "0 #{$btn-dimens} 0 0"
+    "0 0 0 #{$btn-dimens}"
+    "0 0 #{$btn-dimens} 0";

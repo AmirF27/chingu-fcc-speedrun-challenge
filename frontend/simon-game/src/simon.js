@@ -8,7 +8,7 @@ export default class Simon {
         this._on = false;
         this.started = false;
         this[moveCount] = 0;
-        this._strict = false;
+        this.strict = false;
     }
 
     start() {
@@ -74,18 +74,6 @@ export default class Simon {
     set on(value){
         this._on = value;
 
-        if (!value) {
-            this._strict = false;
-        }
-    }
-
-    get strict() {
-        return this._strict;
-    }
-
-    set strict(value) {
-        if (this.on) {
-            this._strict = value;
-        }
+        this.reset();
     }
 }

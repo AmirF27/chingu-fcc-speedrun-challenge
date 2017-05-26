@@ -1,20 +1,35 @@
 <template>
     <main class="container">
         <div class="simon">
-            <div @click="check('green', $event)" class="simon-btn green"></div>
-            <div @click="check('red', $event)" class="simon-btn red"></div>
-            <div @click="check('yellow', $event)" class="simon-btn yellow"></div>
-            <div @click="check('blue', $event)" class="simon-btn blue"></div>
-            <button class="btn btn--default" @click="simon.on = !simon.on">
-                On/Off
-            </button>
-            <button class="btn btn--default" @click="start">
-                Start
-            </button>
-            <button class="btn btn--default" @click="simon.strict = !simon.strict">
-                Strict {{ simon.strict }}
-            </button>
-            <span>Steps: {{ simon.pattern.length }}</span>
+            <div @click="check('green', $event)" class="color-btn green"></div>
+            <div @click="check('red', $event)" class="color-btn red"></div>
+            <div @click="check('yellow', $event)" class="color-btn yellow"></div>
+            <div @click="check('blue', $event)" class="color-btn blue"></div>
+            <div class="interface center-text">
+                <h2>Simon</h2>
+                <div class="interface-row">
+                    <p class="display">
+                        <template v-if="simon.on">
+                            {{ simon.pattern.length }}
+                        </template>
+                    </p>
+                    <button class="simon-btn simon-btn--start" @click="start"></button>
+                </div>
+                <div class="interface-row">
+                    <button class="simon-btn simon-btn--toggle" @click="simon.on = !simon.on">
+                        <label>Power</label>
+                        <span class="indicator indicator--on">On</span>
+                        <span class="indicator indicator--off">Off</span>
+                        <span class="switch" :class="{ 'switch--on': simon.on }"></span>
+                    </button>
+                    <button class="simon-btn simon-btn--toggle" @click="simon.strict = !simon.strict">
+                        <label>Strict</label>
+                        <span class="indicator indicator--on">On</span>
+                        <span class="indicator indicator--off">Off</span>
+                        <span class="switch" :class="{ 'switch--on': simon.strict }"></span>
+                    </button>
+                </div>
+            </div>
         </div>
     </main>
 </template>
