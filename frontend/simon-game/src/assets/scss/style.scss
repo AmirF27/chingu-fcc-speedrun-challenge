@@ -8,27 +8,26 @@
 
     .simon-btn {
         box-sizing: border-box;
+        cursor: pointer;
         display: inline-block;
         height: 150px;
         padding: 20px;
+        transition: all 0.2s ease-in-out;
         width: 150px;
     }
 
-    .green {
-        background: $green;
-        // border-top-left-radius: 150px;
-    }
+    $i: 1;
+    @each $color in $colors {
+        $current-color: nth($btn-colors, $i);
 
-    .red {
-        background: $red;
-    }
+        .#{$color} {
+            background: $current-color;
 
-    .yellow {
-        background: $yellow;
-    }
-
-    .blue {
-        background: $blue;
+            &.current {
+                background: lighten($current-color, 10%);
+            }
+        }
+        $i: $i + 1;
     }
 
     button, span {

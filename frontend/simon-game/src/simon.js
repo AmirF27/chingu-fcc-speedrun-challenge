@@ -5,30 +5,31 @@ export default class Simon {
     constructor() {
         this.pattern = [];
         this[colors] = ["green", "red", "yellow", "blue"];
+        this._on = false;
         this.started = false;
         this[moveCount] = 0;
-        this.strict = false;
+        this._strict = false;
     }
 
     start() {
-        if (!this.started) {
-            this.started = true;
-        }
-        else {
-            this.reset();
-        }
+        if (this.on) {
+            if (!this.started) {
+                this.started = true;
+            }
+            else {
+                this.reset();
+            }
 
-        this.addToPattern();
+            this.addToPattern();
+        }
     }
 
-    playPattern() {
-        return (function*(pattern) {
-            var current = 0;
+    *playPattern() {
+        var current = 0;
 
-            while (current < pattern.length) {
-                yield pattern[current++];
-            }
-        })(this.pattern);
+        while (current < this.pattern.length) {
+            yield this.pattern[current++];
+        }
     }
 
     reset() {
@@ -64,5 +65,27 @@ export default class Simon {
         }
 
         return false;
+    }
+
+    get on() {
+        return this._on;
+    }
+
+    set on(value){
+        this._on = value;
+
+        if (!value) {
+            this._strict = false;
+        }
+    }
+
+    get strict() {
+        return this._strict;
+    }
+
+    set strict(value) {
+        if (this.on) {
+            this._strict = value;
+        }
     }
 }
