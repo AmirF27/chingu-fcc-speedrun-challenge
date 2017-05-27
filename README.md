@@ -75,7 +75,7 @@ Copy this table as needed to make a separate table for each team member for reco
 | 5/16/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-javascript-calculator-54f6392726c1)  | [Build a JavaScript Calculator](./frontend/calculator) |  |
 | 5/17/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-pomodoro-clock-e730e15acddc)  | [Build a Pomodoro Clock](./frontend/pomodoro-clock) |  |
 | 5/22/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-tic-tac-toe-93ea09d31da1)  | [Build a Tic Tac Toe Game](./frontend/tictactoe-game) |  |
-|      |  [ ]()  | [Build a Simon Game](./frontend/simon-game) |  |
+| 5/27/2017 |  [Link to post](https://medium.com/@MetalTechie/chingu-fcc-speedrun-challenge-simon-game-49458d01a312)  | [Build a Simon Game](./frontend/simon-game) |  |
 |      |  [ ]()  | [Build a Markdown Previewer](./data-vis/markdown-previewer) |  |
 |      |  [ ]()  | [Build a Camper Leaderboard](./data-vis/camper-leaderboard) |  |
 |      |  [ ]()  | [Build a Recipe Box](./data-vis/recipe-box) |  |

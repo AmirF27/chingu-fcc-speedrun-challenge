@@ -1,3 +1,5 @@
+"use strict";
+
 var buttons = Symbol();
 var moveCount = Symbol();
 
