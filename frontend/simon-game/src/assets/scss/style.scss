@@ -2,6 +2,7 @@
 @import "variables";
 
 .simon {
+    font-family: "Quantico", sans-serif;
     font-size: 0;
     height: $btn-dimens * 2;
     margin: 0 auto;
@@ -25,12 +26,12 @@
 
         h2 {
             font-size: 2.4rem;
-            margin-bottom: 10px;
+            margin: 10px 0;
         }
 
         .interface-row {
             padding: 0 20px;
-            margin: 20px auto;
+            margin: 15px auto 35px;
 
             @extend %clearfix;
         }
@@ -52,21 +53,51 @@
             cursor: pointer;
             margin: 0 10px;
             outline: none;
+            position: relative;
         }
 
         .simon-btn--start {
-            background: #138c13;
+            background: $start-btn-color;
+            background: -webkit-radial-gradient(
+                lighten($start-btn-color, 20%),
+                $start-btn-color
+            );
+            background: -o-radial-gradient(
+                lighten($start-btn-color, 20%),
+                $start-btn-color
+            );
+            background: -moz-radial-gradient(
+                lighten($start-btn-color, 20%),
+                $start-btn-color
+                );
+            background: radial-gradient(
+                lighten($start-btn-color, 20%),
+                $start-btn-color
+            );
             border-radius: 50%;
+            box-shadow: 0 2px 0 darken($start-btn-color, 20%);
             height: 30px;
             vertical-align: middle;
-            width: 30px
+            width: 30px;
+
+            label {
+                top: 35px;
+            }
+
+            &:active {
+                box-shadow: 0 0 0 darken($start-btn-color, 20%);
+                margin-bottom: -2px;
+
+                label {
+                    top: 34px;
+                }
+            }
         }
 
         .simon-btn--toggle {
             background: darken($btn-border-color, 10%);
             border-radius: 2px;
             height: 20px;
-            position: relative;
             width: 50px;
 
             .switch {
@@ -100,14 +131,17 @@
             .indicator--off {
                 float: left;
             }
+
+            label {
+                top: 25px;
+            }
         }
 
         label {
             color: $white;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             left: 0;
             position: absolute;
-            top: 25px;
             width: 100%;
         }
     }

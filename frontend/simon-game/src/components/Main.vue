@@ -13,7 +13,9 @@
                             {{ simon.pattern.length }}
                         </template>
                     </p>
-                    <button class="simon-btn simon-btn--start" @click="start"></button>
+                    <button class="simon-btn simon-btn--start" @click="start">
+                        <label>Start</label>
+                    </button>
                 </div>
                 <div class="interface-row">
                     <button class="simon-btn simon-btn--toggle" @click="simon.on = !simon.on">
