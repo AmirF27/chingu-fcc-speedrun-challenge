@@ -6,7 +6,7 @@
     font-size: 0;
     height: $btn-dimens * 2;
     margin: 0 auto;
-    position:relative;
+    position: relative;
     width: $btn-dimens * 2;
 
     .interface {
@@ -41,11 +41,11 @@
             border-radius: 2px;
             display: inline-block;
             font-size: 1rem;
-            height: 30px;
-            line-height: 30px;
+            height: $display-height;
+            line-height: $display-height;
             margin: 0 10px;
             vertical-align: middle;
-            width: 40px;
+            width: $display-width;
         }
 
         .simon-btn {
@@ -76,12 +76,12 @@
             );
             border-radius: 50%;
             box-shadow: 0 2px 0 darken($start-btn-color, 20%);
-            height: 30px;
+            height: $display-height;
             vertical-align: middle;
-            width: 30px;
+            width: $display-height;
 
             label {
-                top: 35px;
+                top: $display-height + 5px;
             }
 
             &:active {
@@ -89,7 +89,7 @@
                 margin-bottom: -2px;
 
                 label {
-                    top: 34px;
+                    top: $display-height + 4px;
                 }
             }
         }
@@ -97,8 +97,8 @@
         .simon-btn--toggle {
             background: darken($btn-border-color, 10%);
             border-radius: 2px;
-            height: 20px;
-            width: 50px;
+            height: $toggle-height;
+            width: $toggle-width;
 
             .switch {
                 background: #d6b41b;
@@ -109,11 +109,11 @@
                 position: absolute;
                 top: 3px;
                 transition: all 0.2s ease-in-out;
-                width: 20px;
+                width: $switch-width;
             }
 
             .switch--on {
-                left: 25px;
+                left: $switch-width + 5px;
             }
 
             .indicator {
@@ -133,7 +133,7 @@
             }
 
             label {
-                top: 25px;
+                top: $toggle-height + 5px;
             }
         }
 
@@ -153,7 +153,7 @@
         cursor: pointer;
         display: inline-block;
         height: $btn-dimens;
-        transition: all 0.2s ease-in-out;
+        transition: background 0.2s ease-in-out;
         width: $btn-dimens;
     }
 
@@ -178,5 +178,74 @@
 
     button, span {
         font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .simon {
+        height: $btn-dimens + 80px;
+        width: $btn-dimens + 80px;
+
+        .interface, .color-btn {
+            height: ($btn-dimens + 80px) / 2;
+            width: ($btn-dimens + 80px) / 2;
+        }
+
+        .interface {
+            .interface-row {
+                margin: 5px auto 25px;
+                padding: 0;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+                margin: 0;
+            }
+
+            .display {
+                height: $display-height - 5px;
+                line-height: $display-height - 5px;
+                width: $display-width - 5px;
+            }
+
+            .simon-btn {
+                padding: 0 3px;
+            }
+
+            .simon-btn--start {
+                height: $display-height - 5px;
+                width: $display-height - 5px;
+
+                label {
+                    top: $display-height;
+                }
+
+                &:active label {
+                    top: $display-height - 1px;
+                }
+            }
+
+            .simon-btn--toggle {
+                height: $toggle-height - 4px;
+                width: $toggle-width - 10px;
+
+                .switch {
+                    left: 3px;
+                    width: $switch-width - 4px;
+                }
+
+                .switch--on {
+                    left: $switch-width + 1px;
+                }
+
+                label {
+                    top: $toggle-height;
+                }
+            }
+
+            label {
+                font-size: 0.6rem;
+            }
+        }
     }
 }
