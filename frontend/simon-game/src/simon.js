@@ -110,6 +110,10 @@ export default class Simon {
     set on(value){
         this._on = value;
 
+        if (!value) {
+            this.started = false;
+        }
+
         this.reset();
     }
 }

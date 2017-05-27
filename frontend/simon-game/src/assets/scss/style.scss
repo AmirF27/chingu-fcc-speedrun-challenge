@@ -2,10 +2,12 @@
 @import "variables";
 
 .simon {
+    border-radius: 50%;
     font-family: "Quantico", sans-serif;
     font-size: 0;
     height: $btn-dimens * 2;
     margin: 0 auto;
+    overflow: hidden;
     position: relative;
     width: $btn-dimens * 2;
 
