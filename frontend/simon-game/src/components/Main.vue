@@ -10,7 +10,12 @@
                 <div class="interface-row">
                     <p class="display">
                         <template v-if="simon.on">
-                            {{ simon.pattern.length }}
+                            <template v-if="!gameWon">
+                                {{ simon.pattern.length }}
+                            </template>
+                            <template v-else>
+                                <i class="fa fa-trophy" aria-hidden="true"></i>
+                            </template>
                         </template>
                     </p>
                     <button class="simon-btn simon-btn--start" @click="start">
@@ -44,8 +49,10 @@ import Simon from "../simon";
 export default {
     data() {
         return {
+            colors: ["green", "red", "yellow", "blue"],
             simon: new Simon(),
-            playing: false
+            playing: false,
+            gameWon: false
         };
     },
     methods: {
@@ -56,9 +63,15 @@ export default {
         check(color, event) {
             if (this.simon.on && this.simon.started && !this.playing) {
                 this.lighten(event.target);
+                this.simon.playSoundByColor(color);
 
                 if (this.simon.check(color)) {
-                    this.play();
+                    if (this.simon.pattern.length - 1 >= 2) {
+                        this.gameWon = true;
+                    }
+                    else {
+                        this.play();
+                    }
                 }
             }
         },
@@ -75,8 +88,12 @@ export default {
                     clearInterval(interval);
                 }
                 else {
-                    let currentBtn = document.querySelector(`.${current.value}`);
-                    this.lighten(currentBtn)
+                    let currentBtn = document.querySelector(
+                        `.${current.value.color}`
+                    );
+                    this.lighten(currentBtn);
+                    current.value.sound.play();
+                    console.log(current.value);
                 }
             }, 1000);
         },

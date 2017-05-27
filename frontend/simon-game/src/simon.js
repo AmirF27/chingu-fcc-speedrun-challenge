@@ -1,10 +1,35 @@
-var colors = Symbol();
+var buttons = Symbol();
 var moveCount = Symbol();
 
 export default class Simon {
     constructor() {
         this.pattern = [];
-        this[colors] = ["green", "red", "yellow", "blue"];
+        this[buttons] = [
+            {
+                color: "green",
+                sound: new Howl({
+                    src: require("./assets/audio/simonSound1.mp3")
+                })
+            },
+            {
+                color: "red",
+                sound: new Howl({
+                    src: require("./assets/audio/simonSound2.mp3")
+                })
+            },
+            {
+                color: "yellow",
+                sound: new Howl({
+                    src: require("./assets/audio/simonSound3.mp3")
+                })
+            },
+            {
+                color: "blue",
+                sound: new Howl({
+                    src: require("./assets/audio/simonSound4.mp3")
+                })
+            }
+        ];
         this._on = false;
         this.started = false;
         this[moveCount] = 0;
@@ -38,15 +63,17 @@ export default class Simon {
     }
 
     addToPattern() {
-        this.pattern.push(this.randomColor());
+        this.pattern.push(this.randomButton());
     }
 
-    randomColor() {
-        return this[colors][Math.floor(Math.random() * this[colors].length)];
+    randomButton() {
+        var index = Math.floor(Math.random() * this[buttons].length);
+
+        return this[buttons][index];
     }
 
     check(color) {
-        if (color != this.pattern[this[moveCount]]) {
+        if (color != this.pattern[this[moveCount]].color) {
             if (this.strict) {
                 this.reset();
                 this.addToPattern();
@@ -65,6 +92,15 @@ export default class Simon {
         }
 
         return false;
+    }
+
+    playSoundByColor(color) {
+        for (let button of this[buttons]) {
+            if (color == button.color) {
+                button.sound.play();
+                return;
+            }
+        }
     }
 
     get on() {
