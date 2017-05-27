@@ -61,13 +61,13 @@ export default {
             this.play();
         },
         check(color, event) {
-            if (this.simon.on && this.simon.started && !this.playing) {
+            if (this.simon.started && !this.playing && !this.gameWon) {
                 this.lighten(event.target);
                 this.simon.playSoundByColor(color);
 
                 if (this.simon.check(color)) {
-                    if (this.simon.pattern.length - 1 >= 2) {
-                        this.gameWon = true;
+                    if (this.simon.pattern.length - 1 >= 20) {
+                        this.playWinningPattern();
                     }
                     else {
                         this.play();
@@ -91,18 +91,56 @@ export default {
                     let currentBtn = document.querySelector(
                         `.${current.value.color}`
                     );
-                    this.lighten(currentBtn);
+                    this.lighten(currentBtn, this.speed / 2);
                     current.value.sound.play();
-                    console.log(current.value);
+
+                    console.log(this.speed);
                 }
-            }, 1000);
+            }, this.speed);
         },
-        lighten(btn) {
+        lighten(btn, interval = 500) {
             btn.classList.add("current");
 
             setTimeout(function() {
                 btn.classList.remove("current");
-            }, 500);
+            }, interval);
+        },
+        playWinningPattern() {
+            const TIMES = 5;
+            var index = 0,
+                colors = ["green", "red", "blue", "yellow"];
+
+            this.gameWon = true;
+
+            var interval = setInterval(() => {
+                let btn = document.querySelector(
+                    `.${colors[index % colors.length]}`
+                );
+
+                this.lighten(btn, 200);
+
+                if (++index >= this.colors.length * TIMES) {
+                    this.gameWon = false;
+                    this.start();
+                    clearInterval(interval);
+                }
+            }, 150);
+        }
+    },
+    computed: {
+        speed() {
+            if (this.simon.pattern.length < 5) {
+                return 1000;
+            }
+            else if (this.simon.pattern.length < 9) {
+                return 800;
+            }
+            else if (this.simon.pattern.length < 13) {
+                return 600;
+            }
+            else {
+                return 400;
+            }
         }
     }
 };
