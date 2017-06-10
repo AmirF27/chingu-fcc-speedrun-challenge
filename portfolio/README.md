@@ -1,6 +1,4 @@
 # Phase 2 Portfolio
 
-Link here to:
-
-* the repo for your Phase 2 Portfolio
-* the live site for your Phase 2 Portfolio
+* [Phase 2 Portfolio repo](https://github.com/AmirF27/speedrun-portfolio)
+* [Phase 2 Portfolio live site](http://amirf27.surge.sh/)
